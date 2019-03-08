@@ -13,19 +13,19 @@ class Board extends React.Component {
     return (
       <div>
         <div className="board-row">
-          <Square />
-          <Square />
-          <Square />
+          <Square value={this.state.board[0]}/>
+          <Square value={this.state.board[1]}/>
+          <Square value={this.state.board[2]}/>
         </div>
         <div className="board-row">
-          <Square />
-          <Square />
-          <Square />
+          <Square value={this.state.board[3]}/>
+          <Square value={this.state.board[4]}/>
+          <Square value={this.state.board[5]}/>
         </div>
         <div className="board-row">
-          <Square />
-          <Square />
-          <Square />
+          <Square value={this.state.board[6]}/>
+          <Square value={this.state.board[7]}/>
+          <Square value={this.state.board[8]}/>
         </div>
       </div>
     );
