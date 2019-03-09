@@ -1,6 +1,7 @@
 import React from 'react';
-import Square from './Square';
 import axios from 'axios';
+import Square from './Square';
+
 
 class Board extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Board extends React.Component {
   handleClick (id, newValue) {
     if (this.state.board[id] === null) {
       const newBoard = this.state.board.map((el, i) => i === id ? newValue : el)
-      console.log(newBoard)
+      axios.post('http://localhost:4000/api', newBoard).then(res => console.log(res)).catch(err => console.error(err))
       this.setState({ board: newBoard, player: this.state.player === 'X' ? 'O' : 'X' })
     } 
   }
