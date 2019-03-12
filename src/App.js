@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Board from './Board'
+import Game from './Game';
 import './App.css';
 
 
@@ -12,7 +12,7 @@ class App extends Component {
           <p>
             TicTacToe
           </p>
-          <Board />
+          <Game />
         </header>
       </div>
     );
