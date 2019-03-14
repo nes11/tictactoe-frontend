@@ -3,13 +3,15 @@ import axios from 'axios';
 
 import Board from './Board';
 import GameStatus from './GameStatus';
+import AlertDialog from './Alert';
 
 class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       board: [null, null, null, null, null, null, null, null, null],
-      player: 'X'
+      player: 'X',
+      open: false
     };
   }
 
@@ -19,13 +21,11 @@ class Game extends React.Component {
       .then(res => {
         if (res.data.result) {
           this.setState({ board: res.data.newBoard, result: res.data.result })
-        } else if (res.data.nextPlayer) {
-          this.setState({ board: res.data.newBoard, player: res.data.nextPlayer })
         } else {
-          this.setState({ currentBoard, player })
+          this.setState({ board: res.data.newBoard, player: res.data.nextPlayer })
         }
       })
-      .catch(err => console.error(err))
+      .catch(() => this.setState({ open: true }))
   }
 
 
@@ -35,6 +35,7 @@ class Game extends React.Component {
       <div>
         <Board board={this.state.board} handleClick={(id) => this.handleClick(id, this.state.player)} />
         <GameStatus result={this.state.result} nextPlayer={this.state.player}/>
+        <AlertDialog open={this.state.open} setState={() => this.setState({ open: false })}/>
       </div>
     );
   }
