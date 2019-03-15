@@ -9,11 +9,11 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <p>
-            TicTacToe
-          </p>
-          <Game />
+          TicTacToe
         </header>
+        <body className="App-body">
+          <Game />
+        </body>
       </div>
     );
   }

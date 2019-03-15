@@ -1,23 +1,23 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import './App.css';
 
 
 const GameStatus = ({ result, nextPlayer }) => {
   if (result) {
     return (
-      <div className='App'>
+      <div className='GameStatus'>
       <Paper elevation={5}>
-      <Typography>{result}</Typography>
-        
+      <Typography style={{ fontSize: '30px' }}>{result}</Typography>
       </Paper>
       </div>
     )
   } else {
     return (
-      <div className='App'>
-      <Paper elevation={5} square={true}>
-      <Typography>Next player: {nextPlayer}</Typography>  
+      <div className='GameStatus'>
+      <Paper elevation={5}>
+      <Typography style={{ fontSize: '30px' }}>Next player: {nextPlayer}</Typography>  
       </Paper>
       </div>
     )

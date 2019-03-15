@@ -4,6 +4,7 @@ import axios from 'axios';
 import Board from './Board';
 import GameStatus from './GameStatus';
 import AlertDialog from './Alert';
+import PickPlayers from './PickPlayers';
 
 class Game extends React.Component {
   constructor(props) {
@@ -33,6 +34,7 @@ class Game extends React.Component {
   render() {
     return (
       <div>
+        <PickPlayers />
         <Board board={this.state.board} handleClick={(id) => this.handleClick(id, this.state.player)} />
         <GameStatus result={this.state.result} nextPlayer={this.state.player}/>
         <AlertDialog open={this.state.open} setState={() => this.setState({ open: false })}/>
