@@ -10,8 +10,8 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      board: [null, null, null, null, null, null, null, null, null],
-      player: 'X',
+      board: this.props.startingBoard,
+      player: this.props.startingPlayer,
       open: false
     };
   }
@@ -28,8 +28,6 @@ class Game extends React.Component {
       })
       .catch(() => this.setState({ open: true }))
   }
-
-
 
   render() {
     return (
