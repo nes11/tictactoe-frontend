@@ -18,7 +18,7 @@ class Game extends React.Component {
 
   handleClick(clickedSquareId, player) {
     const currentBoard = this.state.board;
-    axios.post('http://localhost:4000/api', { currentBoard, clickedSquareId, player })
+    axios.post('http://localhost:4000/api/make-move', { currentBoard, clickedSquareId, player })
       .then(res => {
         if (res.data.result) {
           this.setState({ board: res.data.newBoard, result: res.data.result })
