@@ -26,11 +26,11 @@ class App extends Component {
         <header className="App-header">
           TicTacToe
         </header>
-        <body className="App-body">
+        <div className="App-body">
           {this.state.startingBoard 
             ? <Game startingBoard={this.state.startingBoard} startingPlayer={this.state.startingPlayer}/> 
             : null}
-        </body>
+        </div>
       </div>
     );
   }

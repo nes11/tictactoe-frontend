@@ -15,7 +15,7 @@ const AlertDialog = ({ open, setState }) => {
         >
           <DialogTitle>Invalid move</DialogTitle>
           <DialogContent>
-            <DialogContentText>This square is not available. Choose an empty square.</DialogContentText>
+            <DialogContentText>This square is not available. Please choose an empty square.</DialogContentText>
           </DialogContent>
         </Dialog>
       </div>
