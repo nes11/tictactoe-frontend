@@ -11,13 +11,13 @@ class Game extends React.Component {
     super(props);
     this.state = {
       board: this.props.startingBoard,
-      player: this.props.startingPlayer,
+      nextPlayer: this.props.startingPlayer,
       movesIds: [],
       open: false
     };
   }
 
-  handleClick(clickedSquareId, player) {
+  handleMove(clickedSquareId, player) {
     const currentBoard = this.state.board;
     axios.post('http://localhost:4000/api/make-move', { currentBoard, clickedSquareId, player })
       .then(res => {
@@ -26,28 +26,28 @@ class Game extends React.Component {
         } else {
           this.setState({ 
             board: res.data.newBoard, 
-            player: res.data.nextPlayer, 
+            nextPlayer: res.data.nextPlayer, 
             movesIds: this.state.movesIds.concat(res.data.moveId)
           })
         }
       })
       .catch(() => this.setState({ open: true }))
-  }
+  };
 
-  getMoveById(moveId) {
-    axios.get(`http://localhost:4000/api/game-history/${moveId}`)
-      .then(res => this.setState({ board: res.data.newBoard, player: res.data.nextPlayer }))
-  }
   render() {
     return (
       <div>
-        <Board board={this.state.board} handleClick={(id) => this.handleClick(id, this.state.player)} />
-        <GameStatus result={this.state.result} nextPlayer={this.state.player}/>
-        <GameHistory movesIdsArray={this.state.movesIds} handleClick={(id) => this.getMoveById(id)}/>
+        <Board 
+          board={this.state.board} 
+          handleSquareClick={(id) => this.handleMove(id, this.state.nextPlayer)} />
+        <GameStatus result={this.state.result} nextPlayer={this.state.nextPlayer}/>
+        <GameHistory 
+          movesIdsArray={this.state.movesIds} 
+          setNewBoard={({ board, nextPlayer }) => this.setState({ board, nextPlayer })}/>
         <AlertDialog open={this.state.open} setState={() => this.setState({ open: false })}/>
       </div>
     );
-  }
+  };
 };
 
 export default Game;
