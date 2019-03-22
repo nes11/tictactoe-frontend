@@ -34,12 +34,16 @@ class Game extends React.Component {
       .catch(() => this.setState({ open: true }))
   }
 
+  getMoveById(moveId) {
+    axios.get(`http://localhost:4000/api/game-history/${moveId}`)
+      .then(res => this.setState({ board: res.data.newBoard, player: res.data.nextPlayer }))
+  }
   render() {
     return (
       <div>
         <Board board={this.state.board} handleClick={(id) => this.handleClick(id, this.state.player)} />
         <GameStatus result={this.state.result} nextPlayer={this.state.player}/>
-        <GameHistory movesIdsArray={this.state.movesIds}/>
+        <GameHistory movesIdsArray={this.state.movesIds} handleClick={(id) => this.getMoveById(id)}/>
         <AlertDialog open={this.state.open} setState={() => this.setState({ open: false })}/>
       </div>
     );
