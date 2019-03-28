@@ -2,7 +2,6 @@ import React from 'react';
 import Square from './Square';
 import './App.css';
 
-
 const Board = ({ board, handleSquareClick }) => {
   return (
     <div className="Board">

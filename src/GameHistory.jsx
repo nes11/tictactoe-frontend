@@ -7,11 +7,11 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Button from '@material-ui/core/Button';
 
-const fetchSavedMoveById = (moveId) => axios
-  .get(`http://localhost:4000/api/game-history/${moveId}`)
+const fetchSavedMoveById = ({ gameId, moveId }) => axios
+  .get(`http://localhost:4000/api/game/${gameId}/move/${moveId}`)
   .then(res => ({ board: res.data.newBoard, nextPlayer: res.data.nextPlayer }))
 
-const GameHistory = ({ movesIdsArray, setNewBoard }) => {
+const GameHistory = ({ movesIdsArray, setNewBoard, gameId }) => {
   return (
     <div>
       <Table>
@@ -20,7 +20,7 @@ const GameHistory = ({ movesIdsArray, setNewBoard }) => {
             <TableRow key={moveId}>
               <TableCell>
                 <Button
-                  onClick={() => fetchSavedMoveById(moveId).then(move => setNewBoard(move))}
+                  onClick={() => fetchSavedMoveById({ moveId, gameId }).then(move => setNewBoard(move))}
                 >
                   Go to move {moveId}
                 </Button>

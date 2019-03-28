@@ -9,6 +9,7 @@ class App extends Component {
     this.state = { 
       startingBoard: null, 
       startingPlayer: null, 
+      gameId: null
     }
   }
 
@@ -16,7 +17,8 @@ class App extends Component {
     axios.post('http://localhost:4000/api/new-game')
       .then(res => this.setState({ 
         startingBoard: res.data.board, 
-        startingPlayer: res.data.player, 
+        startingPlayer: res.data.player,
+        gameId: res.data.gameId
       }))
   }
 
@@ -28,7 +30,11 @@ class App extends Component {
         </header>
         <div className="App-body">
           {this.state.startingBoard 
-            ? <Game startingBoard={this.state.startingBoard} startingPlayer={this.state.startingPlayer}/> 
+            ? <Game 
+                gameId={this.state.gameId}
+                startingBoard={this.state.startingBoard} 
+                startingPlayer={this.state.startingPlayer}
+              /> 
             : null}
         </div>
       </div>
