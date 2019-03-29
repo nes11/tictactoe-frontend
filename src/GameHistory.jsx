@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 
 const fetchSavedMoveById = ({ gameId, moveId }) => axios
   .get(`http://localhost:4000/api/game/${gameId}/move/${moveId}`)
-  .then(res => ({ board: res.data.newBoard, nextPlayer: res.data.nextPlayer }))
+  .then(res => ({ board: res.data.newBoardStatic, nextPlayer: res.data.nextPlayer }))
 
 const GameHistory = ({ movesIdsArray, setNewBoard, gameId }) => {
   return (
