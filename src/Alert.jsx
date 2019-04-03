@@ -4,7 +4,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
-const AlertDialog = ({ open, setState }) => {
+const AlertDialog = ({ open, setState, message }) => {
     return (
       <div>
         <Dialog
@@ -15,7 +15,7 @@ const AlertDialog = ({ open, setState }) => {
         >
           <DialogTitle>Invalid move</DialogTitle>
           <DialogContent>
-            <DialogContentText>This square is not available. Please choose an empty square.</DialogContentText>
+            <DialogContentText>{message}</DialogContentText>
           </DialogContent>
         </Dialog>
       </div>

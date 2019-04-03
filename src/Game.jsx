@@ -33,7 +33,7 @@ class Game extends React.Component {
               }
         )
       })
-      .catch(() => this.setState({ open: true }))
+      .catch((error) => this.setState({ open: true, errorMessage: error.response.data.error }))
   };
 
   render() {
@@ -48,7 +48,7 @@ class Game extends React.Component {
           movesIdsArray={this.state.movesIds}
           setNewBoard={({ board, nextPlayer }) => this.setState({ board, nextPlayer })}
         />
-        <AlertDialog open={this.state.open} setState={() => this.setState({ open: false })} />
+        <AlertDialog message={this.state.errorMessage} open={this.state.open} setState={() => this.setState({ open: false })} />
       </div>
     );
   };
