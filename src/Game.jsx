@@ -21,17 +21,17 @@ class Game extends React.Component {
   handleMove(clickedSquareId, player) {
     const currentBoard = this.state.board;
     const gameId = this.state.gameId;
-    axios.post('http://localhost:4000/api/make-move', { currentBoard, clickedSquareId, player, gameId })
-      .then(res => {
-        if (res.data.result) {
-          this.setState({ board: res.data.newBoard, result: res.data.result })
-        } else {
-          this.setState({ 
-            board: res.data.newBoard, 
-            nextPlayer: res.data.nextPlayer, 
-            movesIds: this.state.movesIds.concat(res.data.moveId)
-          })
-        }
+    axios.post(`http://localhost:4000/api/game/${gameId}/move`, { currentBoard, clickedSquareId, player })
+      .then(({ data }) => {
+        this.setState(
+          data.result
+            ? { board: data.newBoard, result: data.result }
+            : {
+              board: data.newBoard,
+              nextPlayer: data.nextPlayer,
+              movesIds: this.state.movesIds.concat(data.moveId)
+              }
+        )
       })
       .catch(() => this.setState({ open: true }))
   };
@@ -40,14 +40,15 @@ class Game extends React.Component {
     return (
       <div>
         <Board
-          board={this.state.board} 
+          board={this.state.board}
           handleSquareClick={(id) => this.handleMove(id, this.state.nextPlayer)} />
-        <GameStatus result={this.state.result} nextPlayer={this.state.nextPlayer}/>
-        <GameHistory 
+        <GameStatus result={this.state.result} nextPlayer={this.state.nextPlayer} />
+        <GameHistory
           gameId={this.state.gameId}
-          movesIdsArray={this.state.movesIds} 
-          setNewBoard={({ board, nextPlayer }) => this.setState({ board, nextPlayer })}/>
-        <AlertDialog open={this.state.open} setState={() => this.setState({ open: false })}/>
+          movesIdsArray={this.state.movesIds}
+          setNewBoard={({ board, nextPlayer }) => this.setState({ board, nextPlayer })}
+        />
+        <AlertDialog open={this.state.open} setState={() => this.setState({ open: false })} />
       </div>
     );
   };

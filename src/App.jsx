@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.post('http://localhost:4000/api/new-game')
+    axios.post('http://localhost:4000/api/game/new')
       .then(res => this.setState({ 
         startingBoard: res.data.board, 
         startingPlayer: res.data.player,
