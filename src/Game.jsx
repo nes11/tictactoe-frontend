@@ -30,7 +30,7 @@ class Game extends React.Component {
               board: data.newBoard,
               nextPlayer: data.nextPlayer,
               movesIds: this.state.movesIds.concat(data.moveId)
-              }
+            }
         )
       })
       .catch((error) => this.setState({ open: true, errorMessage: error.response.data.error }))
