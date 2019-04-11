@@ -9,7 +9,7 @@ const GameStatus = ({ result, nextPlayer }) => {
     return (
       <div className='GameStatus'>
       <Paper elevation={5}>
-      <Typography style={{ fontSize: '40px', color: '#cc0000' }}>{result}</Typography>
+      <Typography style={{ fontSize: '40px', color: '#0e8f12' }}>{result}</Typography>
       </Paper>
       </div>
     )
