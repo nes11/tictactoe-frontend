@@ -1,5 +1,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This repo goes together with the tictactoe-backend repo for the api. 
+
+I started with create-react-app to make a basic UI in the form of a clickable board, then build a RESTful api to handle the requests from the frontend and tested it with Mocha and Chai. I incrementally added more functionality, and improved the UI and data structure. I’ve also used this project to learn about error handling.
+
+I learned how to structure the React tree, pass props and set state. I know setting state should always be done immutably. I used Material-UI for some of my components and built the others myself. 
+
 ## Available Scripts
 
 In the project directory, you can run:
